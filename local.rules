@@ -4,7 +4,7 @@ dsize:>300;sid:1;flow:to_server; \
 pcre:"/[Ee][Hh][Ll][Oo]|[Mm][aA][iI][lL] [Ff][Rr][oO][mM]|[rR][Cc][Pp][Tt] [Tt][Oo]|[Dd][Aa][Tt][Aa]|[Rr][Ss][Ee][Tt]|[Qq][Uu][Ii][Tt]/";)
 
 #regla pcre
-alert tcp any any -> $HOME_NET 25 (msg:"SMTP command's"; \
+alert tcp any any -> $HOME_NET 25 (msg:"SMTP command"; \
 pcre:"/[Ee][Hh][Ll][Oo]|[Mm][aA][iI][lL] [Ff][Rr][oO][mM]|[rR][Cc][Pp][Tt] [Tt][Oo]|[Dd][Aa][Tt][Aa]|[Rr][Ss][Ee][Tt]|[Qq][Uu][Ii][Tt]/"; \
 sid:2;rev:2;)
 
@@ -14,15 +14,12 @@ flow:to_server; \
 detection_filter:track by_dst,  count 100, seconds 60; \
 sid:3; rev:3;)
 
-
 #Offset
-alert tcp any any -> any any (msg:"time out";\
+alert tcp any any -> any any (msg:"Time out";\
 content:"timeout";\
 offset:4;sid:4;rev:2;)
 
-
-#Offset
+#Offset 2
 alert tcp any any -> any any (msg:"Server -> Cliente : Closing Connection.";\
 content:"221";\
 depth:100;sid:5;rev:2;)
-
