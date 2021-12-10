@@ -1,6 +1,6 @@
 #dsize
 alert tcp any any -> $HOME_NET 25 (msg:"Very long message"; \
-dsize:>300;sid:1;flow:to_server; \
+dsize:>290;sid:1;flow:to_server; \
 pcre:"/[Ee][Hh][Ll][Oo]|[Mm][aA][iI][lL] [Ff][Rr][oO][mM]|[rR][Cc][Pp][Tt] [Tt][Oo]|[Dd][Aa][Tt][Aa]|[Rr][Ss][Ee][Tt]|[Qq][Uu][Ii][Tt]/";)
 
 #regla pcre
